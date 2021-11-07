@@ -1,0 +1,10 @@
+{
+  "name": "@kaliber/sanity-live-documents",
+  "version": "0.0.0",
+  "main": "src/live-documents.js",
+  "license": "MIT",
+  "private": false,
+  "peerDependencies": {
+    "rxjs": "6.6.7"
+  }
+}
