@@ -5,8 +5,8 @@ import { share, scan, mergeMap, map } from 'rxjs/operators'
 const client = sanityClient.withConfig({ apiVersion: '2021-11-06' })
 
 /** @returns {rxjs.Observable<any>} */
-export function liveDocuments({ schemaType }) {
-  const query = `*[_type == '${schemaType}']`
+export function liveDocuments({ filter }) {
+  const query = `*[${filter}]`
 
   const documents$ = client.observable.fetch(query)
   const documentUpdates$ = client.observable.listen(query)
