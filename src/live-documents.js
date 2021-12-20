@@ -5,8 +5,11 @@ import { share, scan, mergeMap, map } from 'rxjs/operators'
 const client = sanityClient.withConfig({ apiVersion: '2021-11-06' })
 
 /** @returns {rxjs.Observable<any>} */
-export function liveDocuments({ filter }) {
-  const query = `*[${filter}]`
+export function liveDocuments({ filter, order = undefined }) {
+  const query = [
+    `*[${filter}]`,
+    order && `order(${order})`,
+  ].filter(Boolean).join('|')
 
   const documents$ = client.observable.fetch(query)
   const documentUpdates$ = client.observable.listen(query)
